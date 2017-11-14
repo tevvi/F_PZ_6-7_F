@@ -8,7 +8,12 @@ void USlotWidget::InitSlot_Implementation(UPARAM(ref) FItemConfig& CurItem)
 	Item = CurItem;
 
 	if (CurItem.Texture)
+	{
 		ItemImage->SetBrushFromTexture(CurItem.Texture);
+		SetIsEmpty(false);
+	}
+	else
+		SetIsEmpty(true);
 
 	if(CurItem.ItemName != "")
 		ItemName->SetText(FText::FromName(CurItem.ItemName));
@@ -18,12 +23,9 @@ void USlotWidget::InitSlot_Implementation(UPARAM(ref) FItemConfig& CurItem)
 void USlotWidget::SwapItems(UPARAM(ref) USlotWidget* MySlot)//
 {
 	auto MyItem = MySlot->Item;
-	MySlot->InitSlot(Item);
+	auto ThisItem = Item;
+	MySlot->InitSlot(ThisItem);
 	this->InitSlot(MyItem);
-
-	auto MySlotEmpty = MySlot->bIsEmpty;
-	MySlot->SetIsEmpty(this->bIsEmpty);
-	this->SetIsEmpty(MySlotEmpty);
 
 }
 

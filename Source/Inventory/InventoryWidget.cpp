@@ -6,13 +6,15 @@
 
 bool UInventoryWidget::AddItem_Implementation(UPARAM(ref) FItemConfig& item)
 {
-	for (auto& i : Slots)
+	if (item.bIsImplemeted)
 	{
-		if (i->bIsEmpty)
+		for (auto& i : Slots)
 		{
-			i->InitSlot(item);
-			i->SetIsEmpty(false);
-			return true;
+			if (!i->Item.bIsImplemeted)
+			{
+				i->InitSlot(item);
+				return true;
+			}
 		}
 	}
 	return false;

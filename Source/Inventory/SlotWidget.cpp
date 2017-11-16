@@ -5,19 +5,18 @@
 
 void USlotWidget::InitSlot_Implementation(UPARAM(ref) FItemConfig& CurItem)
 {
-	Item = CurItem;
-
-	if (CurItem.Texture)
+	if (CurItem.bIsImplemeted)
 	{
-		ItemImage->SetBrushFromTexture(CurItem.Texture);
-		SetIsEmpty(false);
-	}
-	else
-		SetIsEmpty(true);
+â		Item = CurItem;
 
-	if(CurItem.ItemName != "")
-		ItemName->SetText(FText::FromName(CurItem.ItemName));
-		
+		if (CurItem.Texture)
+			ItemImage->SetBrushFromTexture(CurItem.Texture);
+
+
+		if (CurItem.ItemName != "")
+			ItemName->SetText(FText::FromName(CurItem.ItemName));
+		SetIsEmpty(!CurItem.bIsImplemeted);
+	}
 }
 
 void USlotWidget::SwapItems(UPARAM(ref) USlotWidget* MySlot)//

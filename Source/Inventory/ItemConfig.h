@@ -18,7 +18,8 @@ struct FItemConfig
 {
 	GENERATED_USTRUCT_BODY()
 
-
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item|Config")// Category = "Item|Mesh"
+	bool bIsImplemeted = false;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item|Config")// Category = "Item|Mesh"
 	FName ItemName;
